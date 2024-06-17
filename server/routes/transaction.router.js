@@ -26,9 +26,9 @@ router.put('/:id', rejectUnauthenticated, async (req, res) => {
         const result = await pool.query(
             `
             UPDATE "housing"
-SET "room_number" = $1, "assigned_date" = $2
-FROM "residents"
-WHERE "housing"."resident_id" = "residents"."id" AND "residents"."id" = $3;`,
+            SET "room_number" = $1, "assigned_date" = $2
+            FROM "residents"
+            WHERE "housing"."resident_id" = "residents"."id" AND "residents"."id" = $3;`,
             [req.body.room_number, req.body.assigned_date, req.params.id]
         );
         res.send(result.rows[0]);

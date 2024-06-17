@@ -21,7 +21,7 @@ else {
     pool = new pg.Pool({
         host: 'localhost',
         port: 5432,
-        database: 'resident_solo_project', 
+        database: 'residents_solo_project', 
     });
 }
 
