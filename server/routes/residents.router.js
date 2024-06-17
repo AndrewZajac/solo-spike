@@ -7,7 +7,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('/resident GET route');
     console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
-    let queryText = `SELECT * FROM "residents"`;
+    let queryText = `SELECT "image", "first_name", "last_name", "birthday", "term", "status", "status_date", "admitted_date", "hall", "floor", "housing"."room_number" 
+    FROM "residents"
+    LEFT OUTER JOIN "housing"
+    ON "housing"."resident_id" = "residents"."id";
+    `;
     pool.query(queryText).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
